@@ -5,27 +5,27 @@ $(document).ready(function(){
       };
     const tbodyElement = $('#todoTable tbody');
     const generateRow = function (todoIndex,toDo,importance,comments) {
-        return "<tr>" +
-            "<td>" + todoIndex + "</td>" +
-            "<td>" + toDo + "</td>" +
-            "<td>" + importance + "</td>" +
-            "<td>" + comments + "</td>" +
-        "</tr>"
+        return '<tr>' +
+            '<td>' + todoIndex + '</td>' +
+            '<td>' + toDo + '</td>' +
+            '<td>' + importance + '</td>' +
+            '<td>' + comments + '</td>' +
+        '</tr>'
     };
     const clearForm = function() {
-        $("#todoName").val("");
-        $("#todoImportance").val("...");
-        $("#todoComments").val(""); 
+        $('#todoName').val('');
+        $('#todoImportance').val('...');
+        $('#todoComments').val(''); 
     };
 
     $('#todoName').keyup(function() {
         const toDo = $('#todoName').val();
         if (toDo.length > 100) {
-            $('#warningLetters').css( "color", "red" );
-            $('#sendForm').prop("disabled", true);
+            $('#warningLetters').css( 'color', 'red' );
+            $('#sendForm').prop('disabled', true);
         } else {
-            $('#warningLetters').css( "color", "black" );
-            $('#sendForm').prop("disabled", false);
+            $('#warningLetters').css( 'color', 'black' );
+            $('#sendForm').prop('disabled', false);
         }
         if (toDo.length < 99) {
             $('#nbLetters').html(100 - toDo.length + ' caracters left.');
@@ -58,16 +58,16 @@ fonction comptage de caractere */
 /* pour récupération cookies
         todoList.forEach(todoObject => {
             const todoIndex = todoList.indexOf(todoObject) + 1;
-            $("#todoTable tbody").append(
+            $('#todoTable tbody').append(
                 '<tr>' +
-                    "<td>" + todoIndex + "</td>" +
-                    "<td>" + todoObject.toDo + "</td>" +
-                    "<td>" + todoObject.importance + "</td>" +
-                    "<td>" + todoObject.comments + "</td>" +
-                "</tr>"
+                    '<td>' + todoIndex + '</td>' +
+                    '<td>' + todoObject.toDo + '</td>' +
+                    '<td>' + todoObject.importance + '</td>' +
+                    '<td>' + todoObject.comments + '</td>' +
+                '</tr>'
                 );
-            $("#todoName").val("");
-            $("#todoImportance").val("...");
-            $("#todoComments").val(""); 
+            $('#todoName').val('');
+            $('#todoImportance').val('...');
+            $('#todoComments').val(''); 
         });
 */
