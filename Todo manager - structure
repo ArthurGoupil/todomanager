@@ -1,0 +1,8 @@
+Todo Manager 
+
+- Un form HTML Bootstrap pour collecter différentes informations
+- Chaque entrée est transformée en ligne dans un tableau
+    - Utiliser jsQuery pour prendre l'input du form, et le convertir directement en ligne de tableau, ajouter également
+    à chaque ligne :
+        - un bouton supprimer qui lance une fonction en jsQuery permettant de supprimer la todo du tableau
+        - un numéro en début de ligne pour le numéro de la todo

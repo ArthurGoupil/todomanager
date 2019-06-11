@@ -5,7 +5,7 @@ $(document).ready(function(){
       };
     const tbodyElement = $('#todoTable tbody');
     const generateRow = function (todoIndex,toDo,importance,comments) {
-        "<tr>" +
+        return "<tr>" +
             "<td>" + todoIndex + "</td>" +
             "<td>" + toDo + "</td>" +
             "<td>" + importance + "</td>" +
