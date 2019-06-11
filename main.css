@@ -1,0 +1,26 @@
+.form-todo {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+}
+
+label {
+    font-weight: bold;
+}
+
+#warningLetters {
+    font-size: 15px;
+}
+
+.todoList {
+    background: #343a40;
+    border-radius: 40px;
+    margin: 5% 10% 5% 10%;
+    padding:3%;
+}
+
+thead {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: grey;
+}
