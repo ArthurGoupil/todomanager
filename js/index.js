@@ -4,7 +4,6 @@ $(document).ready(function(){
         return 'id-' + Math.random().toString(36).substr(2, 16);
       };
     const tbodyElement = $('#todoTable tbody');
-    const todoIndex = todoList.indexOf(todoObject) + 1;
     const generateRow = function (todoIndex,toDo,importance,comments) {
         "<tr>" +
             "<td>" + todoIndex + "</td>" +
@@ -47,8 +46,10 @@ $(document).ready(function(){
             id:getUniqueId()
         };
         todoList.push(todoObject);
+        const todoIndex = todoList.indexOf(todoObject) + 1;
         $(tbodyElement).append(generateRow(todoIndex,todoObject.toDo,todoObject.importance,todoObject.comments));
         clearForm();
+    });
 });
 
 /* fonction generate tr
