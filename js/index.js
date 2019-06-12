@@ -25,6 +25,7 @@ $(document).ready(function(){
             if(array[i][attr] === value) {
                 return i;
             };
+        };
     };
 
     $('#todoName').keyup(function() {
