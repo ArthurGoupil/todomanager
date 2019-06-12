@@ -61,10 +61,9 @@ $(document).ready(function(){
     });
 
     $("#todoTable").on('click', '#deleteButton', function () {
-        let indexObject = findIndexObject(todoList,"id",$(this).closest('tr').attr('id'));
+        const indexObject = findIndexObject(todoList,"id",$(this).closest('tr').attr('id'));
         todoList.splice(indexObject, 1);
         $(this).closest('tr').remove();
-        alert(todoList.length);
     });
 });
 
