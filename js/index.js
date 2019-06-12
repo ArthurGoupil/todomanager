@@ -17,6 +17,7 @@ $(document).ready(function(){
         $('#todoName').val('');
         $('#todoImportance').val('...');
         $('#todoComments').val(''); 
+        $('#nbLetters').html('100 caracters left.');
     };
     const findIndexObject = function(array, attr, value) {
         for(var i = 0; i < array.length; i += 1) {
