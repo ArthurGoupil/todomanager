@@ -4,12 +4,13 @@ $(document).ready(function(){
         return 'id-' + Math.random().toString(36).substr(2, 16);
       };
     const tbodyElement = $('#todoTable tbody');
-    const generateRow = function (todoIndex,toDo,importance,comments) {
-        return '<tr>' +
+    const generateRow = function (id,todoIndex,toDo,importance,comments) {
+        return '<tr id="'+ id +'">' +
             '<td>' + todoIndex + '</td>' +
             '<td>' + toDo + '</td>' +
             '<td>' + importance + '</td>' +
             '<td>' + comments + '</td>' +
+            '<td><button id="deleteButton" type="button" class="btn btn-danger"">Delete</button></td>' +
         '</tr>'
     };
     const clearForm = function() {
@@ -17,6 +18,14 @@ $(document).ready(function(){
         $('#todoImportance').val('...');
         $('#todoComments').val(''); 
     };
+    const findIndexObject = function(array, attr, value) {
+        for(var i = 0; i < array.length; i += 1) {
+            if(array[i][attr] === value) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     $('#todoName').keyup(function() {
         const toDo = $('#todoName').val();
@@ -47,10 +56,21 @@ $(document).ready(function(){
         };
         todoList.push(todoObject);
         const todoIndex = todoList.indexOf(todoObject) + 1;
-        $(tbodyElement).append(generateRow(todoIndex,todoObject.toDo,todoObject.importance,todoObject.comments));
+        $(tbodyElement).append(generateRow(todoObject.id,todoIndex,todoObject.toDo,todoObject.importance,todoObject.comments));
         clearForm();
     });
+
+    $("#todoTable").on('click', '#deleteButton', function () {
+        let indexObject = findIndexObject(todoList,"id",$(this).closest('tr').attr('id'));
+        todoList.splice(indexObject, 1);
+        $(this).closest('tr').remove();
+        alert(todoList.length);
+    });
 });
+
+/*        $(this).closest('tr').remove();
+document.getElementById("myLI").parentElement.nodeName
+*/
 
 /* fonction generate tr
 fonction comptage de caractere */
@@ -71,3 +91,15 @@ fonction comptage de caractere */
             $('#todoComments').val(''); 
         });
 */
+
+
+/*        <script type="text/javascript">
+            function deleteRow(i){
+                document.getElementById('todoTable').deleteRow(i)
+            } 
+        </script>
+
+            '<td><button id="deleteButton" type="button" class="btn btn-danger" onclick="deleteRow(this.parentNode.parentNode.rowIndex)">Delete</button></td>' +
+
+
+        */

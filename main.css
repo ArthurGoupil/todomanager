@@ -24,3 +24,7 @@ thead {
     border-bottom-width: 1px;
     border-bottom-color: grey;
 }
+
+#deleteButton {
+    border-radius: 60px;
+}
