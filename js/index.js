@@ -1,5 +1,15 @@
 $(document).ready(function(){
-    $('#todoTable tbody').sortable({opacity:0.8,axis:'y',forceHelperSize:true});
+    $('#todoTable tbody').sortable({
+        opacity:0.8,
+        axis:'y',	
+        helper: function(e, ui) {
+	    ui.children().each(function() {
+		    $(this).width($(this).width());
+		});
+		return ui;
+	    },  
+    forcePlaceholderSize: true
+    });
 
 /*
 var sortedIDs = $( ".selector" ).sortable( "toArray" );
@@ -97,8 +107,7 @@ var sortedIDs = $( ".selector" ).sortable( "toArray" );
             $(row.firstChild).html(row.rowIndex);
         });
         $('#todoTable tbody tr').each(function() {
-            let closestRow = $(this).closest('tr').attr('id')
-            const indexObject = todoList.findIndex(element => element["id"] === closestRow);
+            const indexObject = todoList.findIndex(element => element["id"] === $(this).closest('tr').attr('id'));
             todoList.push(todoList[indexObject]);
             todoList.splice(indexObject, 1);
             localStorage.setItem('todoListStorage', JSON.stringify(todoList));

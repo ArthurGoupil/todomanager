@@ -28,3 +28,7 @@ thead {
 .comments {
     border-radius: 50px !important;
 }
+
+.ui-sortable-helper {
+    display: table;
+}
