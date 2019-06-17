@@ -1,5 +1,11 @@
-$(document).ready(function(){ 
-    const todoList = [];
+$(document).ready(function(){
+    $('#todoTable tbody').sortable({opacity:0.8,axis:'y',forceHelperSize:true});
+
+/*
+var sortedIDs = $( ".selector" ).sortable( "toArray" );
+*/
+
+    const todoList = JSON.parse(localStorage.getItem('todoListStorage'));
     const getUniqueId = function() {
         return 'id-' + Math.random().toString(36).substr(2, 16);
       };
@@ -19,13 +25,10 @@ $(document).ready(function(){
             '<td><button type="button" class="deleteButton btn btn-danger">Delete</button></td>' +
         '</tr>'
     };
-    
-    for (i=localStorage.length-1 ; i >= 0 ; i--) {
-        let savedObject = JSON.parse(localStorage.getItem(localStorage.key(i)))
-        todoList.push(savedObject);
-        const todoIndex = todoList.indexOf(savedObject) + 1;
-        $(tbodyElement).append(generateRow(savedObject.id, todoIndex, savedObject.toDo, savedObject.importance, savedObject.comments));
-    };
+    todoList.forEach((element) => {
+    const todoIndex = todoList.indexOf(element) + 1;
+    $(tbodyElement).append(generateRow(element.id, todoIndex, element.toDo, element.importance, element.comments));
+    });
 
     const clearForm = function() {
         $('#todoName').val('');
@@ -65,9 +68,7 @@ $(document).ready(function(){
         const todoIndex = todoList.indexOf(todoObject) + 1;
         $(tbodyElement).append(generateRow(todoObject.id, todoIndex, todoObject.toDo, todoObject.importance, todoObject.comments));
         clearForm();
-        let todoObjectJson = JSON.stringify(todoObject);
-        localStorage.setItem(todoObject.id,todoObjectJson);
-
+        localStorage.setItem('todoListStorage', JSON.stringify(todoList));
         /*
         $('.deleteButton').click(function() {
             console.log('click')
@@ -76,13 +77,12 @@ $(document).ready(function(){
             $(this).closest('tr').remove();
         });
         */
-
-
     });
 
-    $("#todoTable").on('click', '.deleteButton', function () {
+    $('#todoTable').on('click', '.deleteButton', function () {
         const indexObject = todoList.findIndex(element => element["id"] === $(this).closest('tr').attr('id'));
         todoList.splice(indexObject, 1);
+        localStorage.setItem('todoListStorage', JSON.stringify(todoList));
         $(this).closest('tr').remove();
         let rows = document.querySelectorAll('tr');
         localStorage.removeItem($(this).closest('tr').attr('id'));
@@ -90,4 +90,20 @@ $(document).ready(function(){
             $(row.firstChild).html(row.rowIndex);
         });
     });
+
+    $('#todoTable tbody').on( "sortstop", function(event, ui) {
+        let rows = document.querySelectorAll('tr');
+        rows.forEach((row) => {
+            $(row.firstChild).html(row.rowIndex);
+        });
+        $('#todoTable tbody tr').each(function() {
+            let closestRow = $(this).closest('tr').attr('id')
+            const indexObject = todoList.findIndex(element => element["id"] === closestRow);
+            todoList.push(todoList[indexObject]);
+            todoList.splice(indexObject, 1);
+            localStorage.setItem('todoListStorage', JSON.stringify(todoList));
+        });
+    });
+
 });
+
