@@ -1,0 +1,3 @@
+- Mettre des margin au form est-ce la bonne manière ? ou faut aller choper des displays de colonnes sur bootstrap ?
+- Quand on déclare une variable PUIS qu'on déclare une fonction, la variable n'est pas reconnue dans la fonction ?
+- la variable tBodyElement est vraiment indispensable ?
